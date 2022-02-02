@@ -1,0 +1,33 @@
+version: '3'
+services:
+  bugzilla:
+    container_name: bugzilla
+    networks:
+      - web
+    restart: always
+    image: bugzilla-img:1.0.0
+    ports:
+      - "8090:80"
+      - "8022:22"
+    volumes:
+      - "./src/bugzilla:/var/www/html/bugzilla"
+      - "./src/log/apache2:/var/log/apache2"
+    hostname: dev.oli
+    environment:
+      - "WWW_HOSTNAME=dev.oli"
+      - "SERVER_ADMIN=abc@abc.com"
+      - "TIMEZONE=Asia/Hong_Kong"
+      - "DB_HOST=mysql-5.7"
+      - "DB_NAME=bugzilla"
+      - "DB_USER=bugzilla"
+      - "DB_PASSWD=123456"
+    external_links:
+      - "mysql:mysql-5.7"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+networks:
+  web:
+    external: true
