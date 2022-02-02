@@ -1,3 +1,6 @@
+![Preview](https://github.com/oliguo/Docker-Bugzilla/blob/main/bugzilla/screenshot.png "Bugzilla")
+
+
 # Docker Bugzilla
 ```
 Using the external mysql as the persistence database;
