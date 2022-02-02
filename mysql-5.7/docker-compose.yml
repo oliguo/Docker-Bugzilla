@@ -1,0 +1,22 @@
+version: '3'
+services:
+    mysql:
+        networks:
+            - web 
+        container_name: mysql-5.7
+        restart: always
+        volumes:
+            - './data:/var/lib/mysql'
+            - './config/mysql.conf.d:/etc/mysql/mysql.conf.d'
+            - './config/conf.d:/etc/mysql/conf.d'
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+        image: 'mysql:5.7'
+        deploy:
+            resources:
+                limits:
+                    cpus: '1'
+                    memory: 1024M
+networks:
+  web:
+    external: true
